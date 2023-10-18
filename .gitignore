@@ -361,3 +361,11 @@ MigrationBackup/
 
 # Fody - auto-generated XML schema
 FodyWeavers.xsd
+/ConsoleApp1/WorkingWithJson.csproj
+/ConsoleApp1/Book.cs
+/ConsoleApp1/book.json
+/ConsoleApp1/Program.cs
+/XmlAndJson/people.xml
+/XmlAndJson/Person.cs
+/XmlAndJson/Program.cs
+/XmlAndJson/XmlAndJson.csproj

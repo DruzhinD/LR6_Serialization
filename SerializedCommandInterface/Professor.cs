@@ -1,35 +1,45 @@
-﻿using System.Xml.Serialization;
+﻿using System.Text.Json.Serialization;
+using System.Xml.Serialization;
 
 namespace SerializedCommandInterface
 {
     [Serializable]
+    [XmlRoot("Professor")]
     public class Professor
     {
+        [JsonIgnore]
         //счетчик
         public static int counter;
 
+        [JsonIgnore]
         //количество преподавателей
         public static int amount;
 
-        [XmlElement("Professor")]
+        [JsonIgnore]
         //уникальный номер преподавателя
         public int Id { get; }
 
+        [XmlAttribute("lName")]
         //фамилия
         public string LastName { get; set; }
-        
+
+        [XmlAttribute("fName")]
         //имя преподавателя
         public string FirstName { get; set; }
 
+        [XmlAttribute("sName")]
         //отчество
         public string SecondName { get; set; }
 
+        [XmlAttribute("subject")]
         //дисциплина преподавателя
-        string subject;
-        public string Subject { get => subject; set => subject = value; }
+        public string Subject { get; set; }
 
+        [XmlAttribute("DoE")]
         //дата трудоустройства
-        public DateOnly Employment { get; set; }
+        public DateTime Employment { get; set; }
+        
+        [JsonIgnore]
         //количество месяцев, проведенных в университете
         public int PeriodEmployment
         {
@@ -41,15 +51,20 @@ namespace SerializedCommandInterface
             }
         }
 
-        public Professor() { }
+        //для сериализации, но работает совсем не так, как надо
+        public Professor()
+        {
+            Id = counter;
+            counter++;
+        }
 
         //конструктор с вводом всех полей
-        public Professor(string lastName, string firstName, string secondName, string subject, DateOnly employment)
+        public Professor(string lastName, string firstName, string secondName, string subject, DateTime employment)
         {
             LastName = lastName;
             FirstName = firstName;
             SecondName = secondName;
-            this.subject = subject;
+            Subject = subject;
             Employment = employment;
 
             Id = counter;
@@ -63,10 +78,10 @@ namespace SerializedCommandInterface
             LastName = lastName;
             FirstName = firstName;
             SecondName = secondName;
-            this.subject = subject;
+            Subject = subject;
 
             //значение по умолчанию, т.е. сегодняшний день
-            Employment = DateOnly.FromDateTime(DateTime.Now); 
+            Employment = DateTime.Now; 
 
             Id = counter;
             counter++;
@@ -75,7 +90,7 @@ namespace SerializedCommandInterface
 
         public override string ToString()
         {
-            return $"{Id, -3} {LastName,-15} {FirstName,-15} {SecondName,-15} {Subject,-25} {Employment,-15}";
+            return $"{Id,-3} {LastName,-15} {FirstName,-15} {SecondName,-15} {Subject,-25} {Employment,-15:d}";
         }
 
     }
