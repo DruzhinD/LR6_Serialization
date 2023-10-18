@@ -92,6 +92,5 @@ namespace SerializedCommandInterface
         {
             return $"{Id,-3} {LastName,-15} {FirstName,-15} {SecondName,-15} {Subject,-25} {Employment,-15:d}";
         }
-
     }
 }

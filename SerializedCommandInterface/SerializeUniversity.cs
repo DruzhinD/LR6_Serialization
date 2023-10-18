@@ -69,7 +69,6 @@ namespace SerializedCommandInterface
                 University? university = JsonSerializer.Deserialize<University>(fileStream, options);
                 return university.professorsList;
             }
-
         }
     }
 }
