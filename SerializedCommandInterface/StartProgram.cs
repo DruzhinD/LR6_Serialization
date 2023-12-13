@@ -38,7 +38,7 @@ namespace SerializedCommandInterface
         {
             "аргументы: 1) тип сериализатора",
             "2) тип сериализатора_'mod'",
-            "mod необходим для десериализации файла с несуществующими полями (3 задание ЛР№6)"
+            "mod необходим для десериализации файла с несуществующими/отсутствующими полями (3 задание ЛР№6)"
         };
         
         
@@ -157,6 +157,10 @@ namespace SerializedCommandInterface
                     foreach (string arg in aboutDeserArgs)
                         WriteLine($"\t {arg}");
                 }
+            }
+            else
+            {
+                WriteLine("Неизвестная команда");
             }
         }
 
@@ -311,7 +315,7 @@ namespace SerializedCommandInterface
             List<Professor> newProfessors = new();
             if (command.Length > 3)
             {
-                WriteLine("Неверно указан или отсутсвует сериализатор.");
+                WriteLine("Неверно указан или отсутствует сериализатор.");
                 return;
             }
             //десериализация xml

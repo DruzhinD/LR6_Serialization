@@ -19,7 +19,7 @@ namespace SerializedCommandInterface
         //уникальный номер преподавателя
         public int Id { get; }
 
-        [XmlAttribute("lName")]
+        [XmlElement("lName")]
         //фамилия
         public string LastName { get; set; }
 
@@ -50,7 +50,6 @@ namespace SerializedCommandInterface
                 return years*12 + months;
             }
         }
-
         //для сериализации, но работает совсем не так, как надо
         public Professor()
         {
